@@ -47,6 +47,36 @@
             z-index: 1;
             transition: all 0.1s ease-out;
         }
+        /* Scroll indicator */
+.scroll-indicator {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    pointer-events: none;
+}
+
+.scroll-arrow {
+    font-size: 32px;
+    color: var(--gold);
+    animation: bounce 1.8s infinite;
+    display: inline-block;
+    opacity: 0.9;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(10px);
+    }
+    60% {
+        transform: translateY(5px);
+    }
+}
+
 
         /* Ganesh Section - Appears on Scroll */
         .ganesh-overlay {
@@ -781,7 +811,22 @@
         }
 
         /* Mobile Responsiveness */
-        @media (max-width: 768px) {
+        @media (max-width: 768px)
+        /* Mobile heading enhancement */
+.section-title {
+    position: relative;
+    padding-bottom: 12px;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 2px;
+    background: var(--gold);
+    margin: 10px auto 0;
+}
+{
             .ganesh-text {
                 font-size: 14px;
                 letter-spacing: 1px;
@@ -945,6 +990,10 @@
                 <div class="wedding-date-location">10TH FEBRUARY | GHAZIABAD</div>
             </div>
         </div>
+        <!-- Scroll Down Indicator -->
+<div class="scroll-indicator">
+    <span class="scroll-arrow">⌄</span>
+</div>
     </section>
 
     <!-- Main Content Wrapper -->
