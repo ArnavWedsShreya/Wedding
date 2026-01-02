@@ -447,24 +447,24 @@
         }
 
         /* Wedding Functions Background Image */
-        .functions-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('wedding-functions-bg.jpg') center/cover no-repeat;
-            opacity: 0.1;
-            z-index: 1;
-            pointer-events: none;
-        }
-        /* Increase opacity for mobile */
-@media (max-width: 768px) {
-    .functions-bg {
-        opacity: 1.0;
-    }
+.functions-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('wedding-functions-bg.jpg') center/cover no-repeat;
+    opacity: 0.15;
+    z-index: 1;
+    pointer-events: none;
 }
 
+/* Increase opacity for mobile */
+@media (max-width: 768px) {
+    .functions-bg {
+        opacity: 0.25;
+    }
+}
         .functions-section .section-title {
             color: var(--royal-red);
         }
