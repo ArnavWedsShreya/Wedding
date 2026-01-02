@@ -64,6 +64,7 @@
     position: fixed;
     bottom: 30px;
     left: 50%;
+    transform: translateX(-50%) translateX(-1px);
     transform: translateX(-50%);
     z-index: 20;
     pointer-events: none;
@@ -855,8 +856,8 @@
         @media (max-width: 768px) {
             /* Fix welcome box cut-off on mobile */
 .welcome-message {
-    top: 56%;
-    transform: translate(-50%, -50%);
+    top: 50%;
+    transform: translate(-50%, -52%);
 }
 
 .welcome-text {
