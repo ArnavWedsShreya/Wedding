@@ -1224,14 +1224,20 @@
         }
         
         // Welcome message appears and stays for a while
-        const welcomeMessage = document.getElementById('welcomeMessage');
+const welcomeMessage = document.getElementById('welcomeMessage');
 const scrollIndicator = document.querySelector('.scroll-indicator');
 
+// Welcome message logic (unchanged behavior)
 if (scrolled > 200 && scrolled < 800) {
     welcomeMessage.classList.add('visible');
-    scrollIndicator.classList.add('visible');
 } else {
     welcomeMessage.classList.remove('visible');
+}
+
+// Scroll arrow logic (IMPROVED)
+if (scrolled < 300) {
+    scrollIndicator.classList.add('visible');
+} else {
     scrollIndicator.classList.remove('visible');
 }
         
