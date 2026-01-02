@@ -833,13 +833,28 @@
 
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
+            /* Fix welcome box cut-off on mobile */
+.welcome-message {
+    top: 55%;
+}
+
+.welcome-text {
+    font-size: 22px;
+    line-height: 1.6;
+}
+
+.welcome-box {
+    padding: 25px 20px;
+    max-height: 90vh;
+    overflow-y: auto;
+}
 
     /* Mobile heading enhancement */
     .section-title {
         position: relative;
         padding-bottom: 12px;
     }
-
+            
     .section-title::after {
         content: '';
         display: block;
