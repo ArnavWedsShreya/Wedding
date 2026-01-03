@@ -839,48 +839,6 @@ font-size: 42px;
 color: var(--gold);
 }
 
-/* Music Control Button */
-.music-control {
-position: fixed;
-bottom: 30px;
-left: 30px;
-z-index: 1000;
-width: 60px;
-height: 60px;
-border-radius: 50%;
-background: linear-gradient(135deg, var(--gold), #c99a2e);
-border: 3px solid var(--royal-red);
-display: flex;
-align-items: center;
-justify-content: center;
-cursor: pointer;
-box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-transition: all 0.3s ease;
-}
-
-.music-control:hover {
-transform: scale(1.1);
-box-shadow: 0 10px 35px rgba(212, 175, 55, 0.5);
-}
-
-.music-control svg {
-width: 28px;
-height: 28px;
-fill: var(--royal-red);
-}
-
-.music-control.playing {
-animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-0%, 100% {
-box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-}
-50% {
-box-shadow: 0 8px 35px rgba(212, 175, 55, 0.6);
-}
-}
 
 /* Mobile Responsiveness */
 @media (max-width: 768px) {
@@ -1008,19 +966,6 @@ font-size: 22px; /* Increased for mobile */
 width: 40px;
 height: 40px;
 }
-
-.music-control {
-width: 50px;
-height: 50px;
-bottom: 20px;
-left: 20px;
-}
-
-.music-control svg {
-width: 24px;
-height: 24px;
-}
-
 .map-pin-bg {
 width: 200px;
 }
@@ -1028,20 +973,6 @@ width: 200px;
 </style>
 </head>
 <body>
-<!-- Background Music -->
-<audio id="bgMusic" loop>
-<source src="wedding-music.mp3" type="audio/mpeg">
-</audio>
-
-<!-- Music Control Button -->
-<button class="music-control playing" id="musicControl" aria-label="Toggle Music">
-<svg id="playIcon" style="display: none;" viewBox="0 0 24 24">
-<path d="M8 5v14l11-7z"/>
-</svg>
-<svg id="pauseIcon" viewBox="0 0 24 24">
-<path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z"/>
-</svg>
-</button>
 
 <!-- Ganesh Overlay - Appears on Scroll -->
 <div class="ganesh-overlay" id="ganeshOverlay">
@@ -1377,46 +1308,6 @@ entry.target.classList.add('visible');
 
 document.querySelectorAll('.function-card, .venue-card').forEach(card => {
 observer.observe(card);
-});
-
-// Background Music Control
-const bgMusic = document.getElementById('bgMusic');
-const musicControl = document.getElementById('musicControl');
-const playIcon = document.getElementById('playIcon');
-const pauseIcon = document.getElementById('pauseIcon');
-let isPlaying = false;
-
-// Try to autoplay music (some browsers block autoplay)
-window.addEventListener('load', () => {
-bgMusic.play().then(() => {
-isPlaying = true;
-musicControl.classList.add('playing');
-playIcon.style.display = 'none';
-pauseIcon.style.display = 'block';
-}).catch(() => {
-// Autoplay blocked, show play button
-isPlaying = false;
-musicControl.classList.remove('playing');
-playIcon.style.display = 'block';
-pauseIcon.style.display = 'none';
-});
-});
-
-// Toggle music on button click
-musicControl.addEventListener('click', () => {
-if (isPlaying) {
-bgMusic.pause();
-isPlaying = false;
-musicControl.classList.remove('playing');
-playIcon.style.display = 'block';
-pauseIcon.style.display = 'none';
-} else {
-bgMusic.play();
-isPlaying = true;
-musicControl.classList.add('playing');
-playIcon.style.display = 'none';
-pauseIcon.style.display = 'block';
-}
 });
 </script>
 </body>
