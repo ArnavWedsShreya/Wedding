@@ -8,6 +8,166 @@
 <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
 <style>
+  /* Falling Flowers Animation */
+.flower-container {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+pointer-events: none;
+z-index: 9999;
+overflow: hidden;
+display: none;
+}
+
+.flower-container.active {
+display: block;
+}
+
+.flower {
+position: absolute;
+font-size: 24px;
+animation: fall linear infinite;
+opacity: 0.8;
+}
+
+@keyframes fall {
+0% {
+transform: translateY(-10vh) rotate(0deg);
+opacity: 0.8;
+}
+100% {
+transform: translateY(110vh) rotate(360deg);
+opacity: 0;
+}
+}
+
+/* Event Popup */
+.event-popup-overlay {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background: rgba(0, 0, 0, 0.8);
+z-index: 10000;
+display: none;
+align-items: center;
+justify-content: center;
+}
+
+.event-popup-overlay.active {
+display: flex;
+}
+
+.event-popup {
+background: linear-gradient(135deg, #fff8dc 0%, #f5e6d3 100%);
+border: 5px solid var(--gold);
+border-radius: 20px;
+padding: 40px;
+max-width: 500px;
+width: 90%;
+position: relative;
+box-shadow: 0 0 60px rgba(212, 175, 55, 0.8);
+animation: popupAppear 0.5s ease-out;
+}
+
+@keyframes popupAppear {
+from {
+transform: scale(0.8);
+opacity: 0;
+}
+to {
+transform: scale(1);
+opacity: 1;
+}
+}
+
+.popup-close {
+position: absolute;
+top: 15px;
+right: 15px;
+width: 35px;
+height: 35px;
+background: var(--royal-red);
+color: var(--gold);
+border: none;
+border-radius: 50%;
+font-size: 24px;
+cursor: pointer;
+display: flex;
+align-items: center;
+justify-content: center;
+transition: all 0.3s ease;
+}
+
+.popup-close:hover {
+background: var(--gold);
+color: var(--royal-red);
+transform: rotate(90deg);
+}
+
+.popup-title {
+font-family: 'Cinzel', serif;
+font-size: 32px;
+color: var(--royal-red);
+text-align: center;
+margin-bottom: 20px;
+}
+
+.popup-content {
+font-size: 20px;
+color: var(--dark-red);
+text-align: center;
+line-height: 1.8;
+margin-bottom: 30px;
+}
+
+.popup-button {
+display: block;
+margin: 0 auto;
+padding: 15px 40px;
+background: linear-gradient(135deg, var(--peacock-blue), var(--peacock-green));
+color: white;
+border: 3px solid var(--gold);
+border-radius: 30px;
+font-family: 'Cinzel', serif;
+font-size: 18px;
+font-weight: 700;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+
+.popup-button:hover {
+background: linear-gradient(135deg, var(--gold), #c99a2e);
+color: var(--dark-red);
+transform: scale(1.05);
+}
+
+/* Details Popup */
+.details-popup {
+max-width: 600px;
+max-height: 80vh;
+overflow-y: auto;
+}
+
+.details-image {
+width: 100%;
+height: 250px;
+object-fit: cover;
+border-radius: 15px;
+margin-bottom: 20px;
+border: 3px solid var(--gold);
+}
+
+.details-text {
+font-size: 18px;
+line-height: 1.8;
+color: var(--dark-red);
+margin-bottom: 15px;
+}
+
 * {
 margin: 0;
 padding: 0;
@@ -52,7 +212,7 @@ transition: all 0.1s ease-out;
 position: fixed;
 bottom: 30px;
 left: 50%;
-transform: translateX(-50%) translateX(-1px);
+transform: translateX(-50%);
 z-index: 20;
 pointer-events: none;
 display: flex;
@@ -64,27 +224,24 @@ transition: opacity 0.4s ease;
 animation: scrollBounce 1.8s infinite;
 }
 
-.scroll-indicator.visible {
-opacity: 1;
-}
-
 .scroll-text {
 font-family: 'Cinzel', serif;
-font-size: 14px;
+font-size: 18px;
 letter-spacing: 3px;
-color: #ffffff;
+color: var(--gold);
 margin-bottom: 4px;
 }
 
 .scroll-arrow {
-font-size: 52px;
+font-size: 56px;
 line-height: 1;
-color: #ffffff;
+color: var(--gold);
 }
 
 .scroll-text,
 .scroll-arrow {
-text-shadow: 0 0 12px rgba(255, 255, 255, 0.7);
+text-shadow: 0 0 12px rgba(212, 175, 55, 0.7);
+}
 }
 
 @keyframes scrollBounce {
@@ -437,7 +594,7 @@ z-index: 2;
 }
 
 .function-card {
-background: linear-gradient(135deg, #faf7f0 0%, #f5f0e8 50%, #fff8dc 100%);
+background: linear-gradient(135deg, #f5f2ed 0%, #f0ebe3 50%, #f8f3e8 100%);
 margin: 40px 0;
 padding: 40px;
 border-radius: 15px;
@@ -458,7 +615,7 @@ top: 0;
 left: 0;
 right: 0;
 bottom: 0;
-background: linear-gradient(45deg, rgba(212, 175, 55, 0.05) 0%, rgba(139, 0, 0, 0.03) 50%, rgba(15, 76, 129, 0.05) 100%);
+background: linear-gradient(45deg, rgba(212, 175, 55, 0.08) 0%, rgba(139, 0, 0, 0.05) 50%, rgba(15, 76, 129, 0.08) 100%);
 pointer-events: none;
 }
 
@@ -712,7 +869,7 @@ z-index: 2;
 }
 
 .venue-card {
-background: linear-gradient(135deg, #f8f5f0 0%, #f2ede6 50%, #fff8dc 100%);
+background: linear-gradient(135deg, #f3f0eb 0%, #ede8e1 50%, #f5f1e8 100%);
 border: 4px solid var(--gold);
 padding: 50px 40px;
 border-radius: 15px;
@@ -732,7 +889,7 @@ top: 0;
 left: 0;
 right: 0;
 bottom: 0;
-background: linear-gradient(135deg, rgba(15, 76, 129, 0.04) 0%, rgba(212, 175, 55, 0.06) 50%, rgba(1, 96, 100, 0.04) 100%);
+background: linear-gradient(135deg, rgba(15, 76, 129, 0.06) 0%, rgba(212, 175, 55, 0.09) 50%, rgba(1, 96, 100, 0.06) 100%);
 pointer-events: none;
 }
 
@@ -1349,6 +1506,143 @@ entry.target.classList.add('visible');
 document.querySelectorAll('.function-card, .venue-card').forEach(card => {
 observer.observe(card);
 });
+  // Event Data
+const events = {
+'2026-02-07': {
+name: 'Mehendi Ceremony',
+description: 'Join us for a colorful Mehendi celebration filled with joy, music, and beautiful henna designs!',
+details: `<p class="details-text">The Mehendi ceremony is a cherished pre-wedding ritual where intricate henna designs are applied to the bride's hands and feet. This joyous occasion brings together family and friends for an evening of music, dance, and celebration.</p>
+<p class="details-text"><strong>Significance:</strong> The depth of the henna color is believed to represent the depth of love between the couple. It's a time for the bride to relax and enjoy with her loved ones before the big day.</p>
+<p class="details-text"><strong>What to Expect:</strong> Traditional music, delicious dinner, and lots of laughter as we celebrate this beautiful tradition together!</p>`,
+image: 'mehendi-image.jpg'
+},
+'2026-02-08': {
+name: 'Bhaat, Parojan & Kirtan',
+description: 'Experience the divine blessings with Bhaat ceremony and Sri Khatu Shyam Kirtan!',
+details: `<p class="details-text">Today marks two beautiful ceremonies - the Bhaat and Parojan in the morning, followed by the sacred Sri Khatu Shyam Kirtan in the evening.</p>
+<p class="details-text"><strong>Bhaat & Parojan:</strong> A traditional Rajasthani ceremony where the maternal family blesses the bride with gifts, sweets, and their heartfelt wishes.</p>
+<p class="details-text"><strong>Sri Khatu Shyam Kirtan:</strong> An evening of devotional music and prayers seeking blessings from Khatu Shyam Ji for the couple's prosperous future. The ceremony will be followed by Mahaprasad.</p>`,
+image: 'kirtan-image.jpg'
+},
+'2026-02-09': {
+name: 'Ring Ceremony & Sangeet',
+description: 'Witness the exchange of rings and dance the night away at our Sangeet celebration!',
+details: `<p class="details-text">The Ring Ceremony marks the official engagement where Shreya and Arnav exchange rings, symbolizing their commitment to each other.</p>
+<p class="details-text"><strong>Ring Ceremony:</strong> A beautiful moment where families come together to bless the couple as they begin their journey together.</p>
+<p class="details-text"><strong>Sangeet Night:</strong> Get ready to dance! Our Sangeet will feature performances by family and friends, DJ music, and lots of celebration. Wear your dancing shoes!</p>`,
+image: 'sangeet-image.jpg'
+},
+'2026-02-10': {
+name: 'Haldi & Wedding',
+description: 'The most auspicious day! Join us for Haldi ceremony and the grand wedding celebration!',
+details: `<p class="details-text">Today is the day we've all been waiting for! The celebrations begin with the Haldi ceremony in the morning, followed by the grand wedding in the evening.</p>
+<p class="details-text"><strong>Haldi Ceremony:</strong> A vibrant ritual where turmeric paste is applied to the bride and groom for purification and to bring a natural glow. It's filled with fun, laughter, and lots of yellow!</p>
+<p class="details-text"><strong>Wedding & Reception:</strong> The sacred wedding ceremony will take place in the evening, followed by a grand reception. Witness Shreya and Arnav take their vows and celebrate their union with dinner and festivities!</p>`,
+image: 'wedding-image.jpg'
+}
+};
+
+// Check for today's event on page load
+window.addEventListener('load', () => {
+checkTodaysEvent();
+});
+
+function checkTodaysEvent() {
+const today = new Date();
+const dateString = today.toISOString().split('T')[0];
+  
+if (events[dateString]) {
+showEventPopup(events[dateString]);
+}
+}
+
+function showEventPopup(event) {
+document.getElementById('eventTitle').textContent = event.name;
+document.getElementById('eventDescription').textContent = event.description;
+document.getElementById('eventPopup').classList.add('active');
+document.getElementById('flowerContainer').classList.add('active');
+startFlowerAnimation();
+  
+// Store current event for details
+window.currentEvent = event;
+}
+
+function closeEventPopup() {
+document.getElementById('eventPopup').classList.remove('active');
+stopFlowerAnimation();
+}
+
+function showEventDetails() {
+if (window.currentEvent) {
+document.getElementById('detailsTitle').textContent = window.currentEvent.name;
+document.getElementById('detailsImage').src = window.currentEvent.image;
+document.getElementById('detailsContent').innerHTML = window.currentEvent.details;
+document.getElementById('eventPopup').classList.remove('active');
+document.getElementById('detailsPopup').classList.add('active');
+}
+}
+
+function closeDetailsPopup() {
+document.getElementById('detailsPopup').classList.remove('active');
+document.getElementById('flowerContainer').classList.remove('active');
+stopFlowerAnimation();
+}
+
+// Falling Flowers Animation
+let flowerInterval;
+
+function startFlowerAnimation() {
+const container = document.getElementById('flowerContainer');
+const flowers = ['🌸', '🌺', '🌼', '🏵️', '💐', '🌷'];
+  
+flowerInterval = setInterval(() => {
+const flower = document.createElement('div');
+flower.className = 'flower';
+flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+flower.style.left = Math.random() * 100 + '%';
+flower.style.animationDuration = (Math.random() * 3 + 4) + 's';
+flower.style.fontSize = (Math.random() * 10 + 20) + 'px';
+    
+container.appendChild(flower);
+    
+setTimeout(() => {
+flower.remove();
+}, 8000);
+}, 300);
+}
+
+function stopFlowerAnimation() {
+if (flowerInterval) {
+clearInterval(flowerInterval);
+}
+const container = document.getElementById('flowerContainer');
+container.innerHTML = '';
+}
+
 </script>
+  <!-- Falling Flowers Container -->
+<div class="flower-container" id="flowerContainer"></div>
+
+<!-- Event Popup -->
+<div class="event-popup-overlay" id="eventPopup">
+<div class="event-popup">
+<button class="popup-close" onclick="closeEventPopup()">×</button>
+<h2 class="popup-title" id="eventTitle">Today's Celebration</h2>
+<p class="popup-content" id="eventDescription"></p>
+<button class="popup-button" onclick="showEventDetails()">Know About This Function</button>
+</div>
+</div>
+
+<!-- Event Details Popup -->
+<div class="event-popup-overlay" id="detailsPopup">
+<div class="event-popup details-popup">
+<button class="popup-close" onclick="closeDetailsPopup()">×</button>
+<h2 class="popup-title" id="detailsTitle">Function Details</h2>
+<img src="placeholder-event.jpg" alt="Event" class="details-image" id="detailsImage">
+<div id="detailsContent"></div>
+<button class="popup-button" onclick="closeDetailsPopup()">Close</button>
+</div>
+</div>
+
 </body>
 </html>
